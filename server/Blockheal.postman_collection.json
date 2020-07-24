@@ -1,0 +1,506 @@
+{
+	"info": {
+		"_postman_id": "a0b19097-62a0-4afd-a0fc-b22b4bc4bd59",
+		"name": "Blockheal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "get user info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"doctor\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"doctor\",\n    \"password\":\"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/auth/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\":\"doctor firstname\",\n    \"lastName\":\"doctor lastname\",\n    \"email\":\"doctor@me.com\",\n    \"publicKey\":\"5u09lHNsj6tQ51s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQAB\",\n    \"username\":\"doctor\",\n    \"password\":\"123456\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "doctor",
+			"item": [
+				{
+					"name": "create doctor profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMTgzOTdjZTkxODM2NDdmNTg1OTk5MSIsInVzZXJuYW1lIjoiZG9jdG9yIiwiaWF0IjoxNTk1NDIzMTQ4fQ.Ne31YG-FhtQo5q6zWBvv-x7h0P31EQSH5VtncGAbwAw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"specialty\":\"Cardiologists\",\n    \"birthPlace\":\"tehran\",\n    \"birthDate\":\"1595406279\",\n    \"medicalId\":\"1\",\n    \"email\":\"doctor@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/doctor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"doctor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get doctor profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMTgzOTdjZTkxODM2NDdmNTg1OTk5MSIsInVzZXJuYW1lIjoiZG9jdG9yIiwiaWF0IjoxNTk1NDIzMTQ4fQ.Ne31YG-FhtQo5q6zWBvv-x7h0P31EQSH5VtncGAbwAw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/doctor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"doctor"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Patient",
+			"item": [
+				{
+					"name": "create patient profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMTgzOTYxZTkxODM2NDdmNTg1OTk5MCIsInVzZXJuYW1lIjoicGF0aWVudCIsImlhdCI6MTU5NTQyMzIxNn0.JXXXTCvSDlYJQawUVL2ba5qKnfTKjMfqX7XxlSqqQTc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"birthDate\":\"1595406279\",\n    \"birthPlace\":\"Tehran\",\n    \"fatherBirthPlace\":\"tehran\",\n    \"motherBirthPlace\":\"tehran\",\n    \"bloodType\":\"o+\",\n    \"hairColor\":\"black\",\n    \"eyeColor\":\"black\",\n    \"email\":\"patient@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/patient",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get patient profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMTgzOTYxZTkxODM2NDdmNTg1OTk5MCIsInVzZXJuYW1lIjoicGF0aWVudCIsImlhdCI6MTU5NTQyMzIxNn0.JXXXTCvSDlYJQawUVL2ba5qKnfTKjMfqX7XxlSqqQTc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/patient",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"patient"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "request",
+			"item": [
+				{
+					"name": "send request to patient",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMTgzOTdjZTkxODM2NDdmNTg1OTk5MSIsInVzZXJuYW1lIjoiZG9jdG9yIiwiaWF0IjoxNTk1NDIzMTQ4fQ.Ne31YG-FhtQo5q6zWBvv-x7h0P31EQSH5VtncGAbwAw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"patientUserName\":\"patient\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get doctor request list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMTgzOTdjZTkxODM2NDdmNTg1OTk5MSIsInVzZXJuYW1lIjoiZG9jdG9yIiwiaWF0IjoxNTk1NDIzNDg2fQ.eR34TVSZ2FH7lZe09o32MPHOONi8bvqLo8Bx-U1vq9M",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/request/doctor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"request",
+								"doctor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get patient request list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMTgzOTYxZTkxODM2NDdmNTg1OTk5MCIsInVzZXJuYW1lIjoicGF0aWVudCIsImlhdCI6MTU5NTQyMzIxNn0.JXXXTCvSDlYJQawUVL2ba5qKnfTKjMfqX7XxlSqqQTc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/request/patient",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"request",
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cancel request",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMTgzOTYxZTkxODM2NDdmNTg1OTk5MCIsInVzZXJuYW1lIjoicGF0aWVudCIsImlhdCI6MTU5NTQyMzIxNn0.JXXXTCvSDlYJQawUVL2ba5qKnfTKjMfqX7XxlSqqQTc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/request/5f183a39e9183647f5859996/cancel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"request",
+								"5f183a39e9183647f5859996",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reject request",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMTgzOTYxZTkxODM2NDdmNTg1OTk5MCIsInVzZXJuYW1lIjoicGF0aWVudCIsImlhdCI6MTU5NTQyMzIxNn0.JXXXTCvSDlYJQawUVL2ba5qKnfTKjMfqX7XxlSqqQTc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isAccepted\":\"false\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/request/5f183b3ce9183647f5859997/reject",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"request",
+								"5f183b3ce9183647f5859997",
+								"reject"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "accept request",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMTgzOTYxZTkxODM2NDdmNTg1OTk5MCIsInVzZXJuYW1lIjoicGF0aWVudCIsImlhdCI6MTU5NTQyMzIxNn0.JXXXTCvSDlYJQawUVL2ba5qKnfTKjMfqX7XxlSqqQTc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isAccepted\":\"true\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/request/5f183b3ce9183647f5859997/accept",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"request",
+								"5f183b3ce9183647f5859997",
+								"accept"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "prescript",
+			"item": [
+				{
+					"name": "create prescript",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMTgzOTdjZTkxODM2NDdmNTg1OTk5MSIsInVzZXJuYW1lIjoiZG9jdG9yIiwiaWF0IjoxNTk1NDIzNDg2fQ.eR34TVSZ2FH7lZe09o32MPHOONi8bvqLo8Bx-U1vq9M",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"patientUserName\":\"patient\",\n    \"list\":[\n        {\n            \"drugName\":\"drugA\",\n            \"amount\":\"1.5\"\n        },\n          {\n            \"drugName\":\"drugB\",\n            \"amount\":\"1\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/prescript",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"prescript"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get prescript",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMTgzOTYxZTkxODM2NDdmNTg1OTk5MCIsInVzZXJuYW1lIjoicGF0aWVudCIsImlhdCI6MTU5NTQyMzIxNn0.JXXXTCvSDlYJQawUVL2ba5qKnfTKjMfqX7XxlSqqQTc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/prescript",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"prescript"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
