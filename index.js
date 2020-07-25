@@ -72,10 +72,10 @@ var server = require('http').createServer(app);
 
 const rethink = require('./db/rethinkdb');
 
- const blockchain = require("./api/transactions");
+const blockchain = require("./api/transactions");
 
 var authRoutes = require('./routes/auth');
- var blockchainRoutes = require("./routes/blockchain");
+var blockchainRoutes = require("./routes/blockchain");
 var userRoutes = require('./routes/user');
 var patientRoutes = require('./routes/patient');
 var doctorRoutes = require('./routes/doctor');
