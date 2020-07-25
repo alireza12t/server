@@ -29,7 +29,8 @@ const waitParser = (req, res, next) => {
   next();
 };
 
-
+// const path = require('path')
+// app.use(express.static(path.join(__dirname, 'static')))
 
 var morgan = require('morgan');
 app.use(
@@ -40,6 +41,7 @@ app.use(
 ); //, { "stream": loggerStream() })
 
 app.use(bodyParser.json());
+//app.use(bodyParser.raw({ type: 'application/octet-stream' }))
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookiePareser());
 app.use(waitParser);
@@ -72,10 +74,10 @@ var server = require('http').createServer(app);
 
 const rethink = require('./db/rethinkdb');
 
-const blockchain = require("./api/transactions");
+// const blockchain = require("./api/transactions");
 
 var authRoutes = require('./routes/auth');
-var blockchainRoutes = require("./routes/blockchain");
+// var blockchainRoutes = require("./routes/blockchain");
 var userRoutes = require('./routes/user');
 var patientRoutes = require('./routes/patient');
 var doctorRoutes = require('./routes/doctor');
@@ -83,7 +85,7 @@ var requestRoutes = require('./routes/request');
 var prescriptRoutes = require('./routes/prescript');
 
 app.use('/auth', authRoutes);
-app.use("/blockchain", blockchainRoutes);
+// app.use("/blockchain", blockchainRoutes);
 app.use('/user', userRoutes);
 app.use('/patient', patientRoutes);
 app.use('/doctor', doctorRoutes);
@@ -126,13 +128,13 @@ app.use(function (err, req, res, next) {
 /// ///////////////////////// START ///////////////////////////////////////////////////////////////
 /// ///////////////////////////////////////////////////////////////////////////////////////////////
 /// ///////////////////////////////////////////////////////////////////////////////////////////////
- Promise.all([blockchain.connect(), protos.compile(), rethink.connect()])
-   .catch((err) => {
-     logger.error(`Starting services has some errors: ${err}`);
-   })
-   .then(() => {
-     logger.info("Server is ready ...");
-   });
+// Promise.all([blockchain.connect(), protos.compile(), rethink.connect()])
+//   .catch((err) => {
+//     logger.error(`Starting services has some errors: ${err}`);
+//   })
+//   .then(() => {
+//     logger.info("Server is ready ...");
+//   });
 
 /// ///////////////////////////////////////////////////////////////////////////////////////////////
 /// ///////////////////////////////////////////////////////////////////////////////////////////////
