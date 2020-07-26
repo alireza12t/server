@@ -1,120 +1,55 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-
-const verificationCodeSchema = mongoose.Schema({
-  name: 'string',
-  code: 'string',
-  createdAt: { type: Date, expires: 60 * 60 * 2, default: Date.now }
-}, { timestamp: true })
+const mongoose = require('mongoose');
+const validator = require('validator');
+const bcrypt = require('bcrypt');
 
 const userSchema = mongoose.Schema({
-  name: {
+  firstName: {
     type: String,
-    required: true
+    required: true,
   },
   lastName: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
     required: true,
-    trim: true,
-    unique: 1
+    lowercase: true,
+    unique: true,
+    validate: [validator.isEmail, 'Please provide a valid email'],
   },
-  isVerified: {
-    type: Boolean,
+  publicKey: {
+    type: String,
     required: true,
-    default: true /// should be false.
   },
-  emailVerificationString: verificationCodeSchema,
-  // verificationCodeSchema,
-  resetPasswordVerificationString: {
-    type: mongoose.Schema.Types.ObjectId
-  },
-  isActive: {
-    type: Boolean,
+  username: {
+    type: String,
     required: true,
-    default: true
-  },
-  hasTicketAccount: {
-    type: Boolean,
-    required: true,
-    default: false
+    unique: true,
   },
   password: {
     type: String,
     required: true,
-    minlength: 6,
-    trim: true
   },
-  pubKey: {
-    type: String
+  salt: {
+    type: String,
   },
-  label: {
-    type: Array,
-    required: true
-  },
-  userActivities: [
-    {
-      action: {
-        type: String,
-        required: true
-      },
-      timestamp: {
-        type: Date
-      },
-      device: {
-        type: String
-      },
-      loginDeviceId: {},
-      ip: {
-        type: String
-      }
-    }
-  ],
-  // accounts: [
-  //   {
-  //     commercialName: {
-  //       type: String
-  //     },
-  //     logo: {
-  //       type: String
-  //     },
-  //     username: {
-  //       type: String
-  //     }
-  //   }
-  // ]
 });
 
-// This functions will execute if the password field is modified.
-userSchema.pre("save", function(next) {
-  var user = this;
-  if (user.isModified("password")) {
-    bcrypt.genSalt(Number(process.env.SALT_I), function(err, salt) {
-      if (err) return next(err);
-      bcrypt.hash(user.password, salt, function(err, hash) {
-        if (err) return next(err);
-        user.password = hash;
-        next();
-      });
-    });
-  } else {
-    next();
-  }
+userSchema.pre('save', async function (next) {
+  this.salt = await bcrypt.genSalt();
+  this.password = this.hashPassword(this.password, this.salt);
+  next();
 });
 
-// This method compares the password which is stored in database and
-// the password which the user entered. It is used in Login.
-userSchema.methods.comparePassword = function(candidatePassword, cb) {
-  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-    if (err) return cb(err);
-    cb(null, isMatch);
-  });
+userSchema.methods.hashPassword = async (password, salt) => {
+  return await bcrypt.hash(password, salt);
 };
 
-const User = mongoose.model('User', userSchema)
-const VerificationCode = mongoose.model('VerificationCode', verificationCodeSchema)
+userSchema.methods.validatePassword = async (candidatePassword, userPassword) => {
+  return await bcrypt.compare(candidatePassword, userPassword);
+};
 
-module.exports = { User, VerificationCode }
+const User = mongoose.model('User', userSchema);
+
+module.exports = { User };

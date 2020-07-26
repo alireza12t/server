@@ -144,6 +144,7 @@ const connect = () => {
 // This functions sends the batches to validator.
 const submit = (txnJson, { wait }) => {
   const txnBuffer = Buffer.from(txnJson.txn, "base64");
+  console.logout(txnJson)
   const batchAndTx = batch(txnBuffer);
   logger.info(
     `The transaction with transactionId ${batchAndTx[1][0].headerSignature} is recieved`
