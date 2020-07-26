@@ -69,9 +69,9 @@ exports.cancelRequest = catchAsync(async (req, res, next) => {
   const { id: requestId } = req.params;
   if (!requestId) return res.status(400).send('request id not defined');
 
-  const request = await Request.findOne({ $and: [{ patientId: id }, { _id: requestId }] });
+  const request = await Request.findOne({ $and: [{ doctorId: id }, { _id: requestId }] });
 
-  if (!request) return res.status(400).send('request for this user not exists');
+  if (!request) return res.status(404).send('request for this doctor not exists');
 
   await request.deleteOne({ _id: requestId });
 

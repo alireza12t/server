@@ -9,6 +9,6 @@ const userController = require('./../controllers/userController');
 /// ///////////////////////////////////////////////////////////////////////////////////////////////
 
 // This end point takes query on all offers of PolyGame from RethinkDB.
-router.get('/', userController.get);
+router.get('/:username', userController.get);
 
 module.exports = router;
